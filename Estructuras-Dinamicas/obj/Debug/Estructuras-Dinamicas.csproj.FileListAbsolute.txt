@@ -1,0 +1,7 @@
+C:\Users\migue\Source\Repos\ING-Mike-Programador\Estructuras-Dinamicas\Estructuras-Dinamicas\bin\Debug\Estructuras-Dinamicas.exe.config
+C:\Users\migue\Source\Repos\ING-Mike-Programador\Estructuras-Dinamicas\Estructuras-Dinamicas\bin\Debug\Estructuras-Dinamicas.exe
+C:\Users\migue\Source\Repos\ING-Mike-Programador\Estructuras-Dinamicas\Estructuras-Dinamicas\bin\Debug\Estructuras-Dinamicas.pdb
+C:\Users\migue\Source\Repos\ING-Mike-Programador\Estructuras-Dinamicas\Estructuras-Dinamicas\obj\Debug\Estructuras-Dinamicas.csproj.AssemblyReference.cache
+C:\Users\migue\Source\Repos\ING-Mike-Programador\Estructuras-Dinamicas\Estructuras-Dinamicas\obj\Debug\Estructuras-Dinamicas.csproj.CoreCompileInputs.cache
+C:\Users\migue\Source\Repos\ING-Mike-Programador\Estructuras-Dinamicas\Estructuras-Dinamicas\obj\Debug\Estructuras-Dinamicas.exe
+C:\Users\migue\Source\Repos\ING-Mike-Programador\Estructuras-Dinamicas\Estructuras-Dinamicas\obj\Debug\Estructuras-Dinamicas.pdb

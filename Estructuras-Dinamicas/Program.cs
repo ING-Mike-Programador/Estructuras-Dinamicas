@@ -10,6 +10,19 @@ namespace Estructuras_Dinamicas
     {
         static void Main(string[] args)
         {
+            String nombre = "";
+            String Nombre = Console.ReadLine();
+            if (Nombre != null && Nombre.Trim() != "")
+            {
+                nombre = Nombre;
+            }
+            else
+            {
+                nombre = "Desconocido";
+            }
+
+            Console.WriteLine(nombre);
+            Console.ReadKey();
         }
     }
 }
