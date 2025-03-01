@@ -11,29 +11,43 @@ namespace Estructuras_Dinamicas
 
         static void Main(string[] args)
         {
-            objetoPila objtpila = new objetoPila();
+            string[] nombres = { "Miguel", "Jessica", "Itzel", "Javier", "Luis", "Rebeca" };
+            int[] edades = { 20, 22, 30, 20, 23, 12 };
+            string[] sexo = { "Masculino", "Femenino", "Femenino", "Masculino", "Masculino", "Femenino" };
 
-            Console.Write("Escribe un nombre: ");
-            string nombre = Console.ReadLine();
-            objtpila.setNombre(nombre);
+            pila instanciaPila = new pila();
 
-            Console.Write("Escribe la edad: ");
-            int edad = int.Parse(Console.ReadLine());
-            objtpila.setEdad(edad);
+            Console.WriteLine("ESCRIBIENDO......");
 
-            Console.Write("Escribe un sexo: ");
-            string genero = Console.ReadLine();
-            objtpila.setGenero(genero);
+            for (int i = 0; i < 6; i++)
+            {
+                objetoPila objtpila = new objetoPila();
 
-            Console.Clear();
+                objtpila.setNombre(nombres[i]);
+                objtpila.setEdad(edades[i]);
+                objtpila.setGenero(sexo[i]);
 
-            Console.Write("El nombre escrito es: ");
-            Console.WriteLine(objtpila.getNombre());
-            Console.Write("La edad escrita es: ");
-            Console.WriteLine(objtpila.getEdad());
-            Console.Write("El sexo escrito es: ");
-            Console.WriteLine(objtpila.getGenero());
-            Console.ReadKey();
+                Console.Write("El nombre escrito es: ");
+                Console.WriteLine(objtpila.getNombre());
+                Console.Write("La edad escrita es: ");
+                Console.WriteLine(objtpila.getEdad());
+                Console.Write("El sexo escrito es: ");
+                Console.WriteLine(objtpila.getGenero());
+                Console.WriteLine();
+
+                instanciaPila.agg(objtpila);
+            }
+            Console.WriteLine("Presiona ENTER para Imprimir");
+            Console.WriteLine("--------------------------------------------");
+            Console.ReadLine();
+            Console.WriteLine();
+
+            instanciaPila.imprimir();
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Presiona ENTER para terminar");
+            Console.ReadLine();
         }
     }
     public class pila
@@ -59,40 +73,49 @@ namespace Estructuras_Dinamicas
             }
             else
             {
-                // Ciclo para recorrer la pila y guardar donde corresponde el nuevo objeto //
-                while (objeto.arriba != null)
-                {
-                    objeto.arriba = objeto.arriba;
-                }
-                // asignación al objeto que entrara a la pila //
                 objetoNuevo.arriba = objeto;
                 objeto = objetoNuevo;
             }
         }
-        public string imprimir() // Metodo para imprimir los componentes de la pila //
+        public void imprimir() // Metodo para imprimir los componentes de la pila //
         {
             if (objeto != null)
             {
-                while (objeto.arriba != null)
+                if (objeto.arriba == null)
                 {
-                    Console.Write("El nombre escrito es: ");
-                    Console.WriteLine(objeto.getNombre());
-                    Console.Write("La edad escrita es: ");
-                    Console.WriteLine(objeto.getEdad());
-                    Console.Write("El sexo escrito es: ");
-                    Console.WriteLine(objeto.getGenero());
-                    objeto.arriba = objeto.arriba;
+                    impresiones(objeto);
                 }
-                Console.Write("El nombre escrito es: ");
-                Console.WriteLine(objeto.getNombre());
-                Console.Write("La edad escrita es: ");
-                Console.WriteLine(objeto.getEdad());
-                Console.Write("El sexo escrito es: ");
-                Console.WriteLine(objeto.getGenero());
-            }
-        }
+                else
+                {
+                    impresiones(objeto);
 
+                    objetoPila recorrido = objeto.arriba;
+
+                    while (recorrido.arriba != null)
+                    {
+                        impresiones(recorrido);
+                        recorrido = recorrido.arriba;
+                    }
+                    impresiones(recorrido);
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("No hay nada que imprimir");
+
+        }
+        private void impresiones(objetoPila datos)
+        {
+            Console.WriteLine();
+            Console.Write("El nombre escrito es: ");
+            Console.WriteLine(datos.getNombre());
+            Console.Write("La edad escrita es: ");
+            Console.WriteLine(datos.getEdad());
+            Console.Write("El sexo escrito es: ");
+            Console.WriteLine(datos.getGenero());
+            Console.WriteLine();
+        }
     }
+   
     public class objetoPila
     {
         // variables //
