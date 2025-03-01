@@ -8,15 +8,15 @@ namespace Estructuras_Dinamicas
 {
     internal class Program
     {
-        
+
         static void Main(string[] args)
         {
-           objetoPila objtpila = new objetoPila();
+            objetoPila objtpila = new objetoPila();
 
             Console.Write("Escribe un nombre: ");
-            string nombre = Console.ReadLine(); 
+            string nombre = Console.ReadLine();
             objtpila.setNombre(nombre);
-            
+
             Console.Write("Escribe la edad: ");
             int edad = int.Parse(Console.ReadLine());
             objtpila.setEdad(edad);
@@ -36,7 +36,11 @@ namespace Estructuras_Dinamicas
             Console.ReadKey();
         }
     }
-    
+    public class pila
+    {
+        public pila()
+        { }
+    }
     public class objetoPila
     {
         // variables //
