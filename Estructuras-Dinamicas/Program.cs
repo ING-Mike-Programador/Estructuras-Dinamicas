@@ -11,10 +11,28 @@ namespace Estructuras_Dinamicas
         
         static void Main(string[] args)
         {
-           
-            objeto.setNombre("Hola mundo");
+           objetoPila objtpila = new objetoPila();
 
-            Console.WriteLine(objeto.getNombre());
+            Console.Write("Escribe un nombre: ");
+            string nombre = Console.ReadLine(); 
+            objtpila.setNombre(nombre);
+            
+            Console.Write("Escribe la edad: ");
+            int edad = int.Parse(Console.ReadLine());
+            objtpila.setEdad(edad);
+
+            Console.Write("Escribe un sexo: ");
+            string genero = Console.ReadLine();
+            objtpila.setGenero(genero);
+
+            Console.Clear();
+
+            Console.Write("El nombre escrito es: ");
+            Console.WriteLine(objtpila.getNombre());
+            Console.Write("La edad escrita es: ");
+            Console.WriteLine(objtpila.getEdad());
+            Console.Write("El sexo escrito es: ");
+            Console.WriteLine(objtpila.getGenero());
             Console.ReadKey();
         }
     }
@@ -68,5 +86,7 @@ namespace Estructuras_Dinamicas
             }
         }
         public string getNombre() => nombre;
+        public string getEdad() => edad;
+        public string getGenero() => genero;
     }
 }
