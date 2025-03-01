@@ -38,22 +38,72 @@ namespace Estructuras_Dinamicas
     }
     public class pila
     {
-        public pila()
+        // Variables de la clase //
+        private objetoPila objeto = null; // Varible privada del objeto de la pila //
+
+        // Constructores de la clase pila //
+        public pila() // Constructor vacio //
         { }
+
+        public pila(objetoPila objeto) // Constructor para recibir el objeto //
+        {
+            this.objeto = objeto;
+        }
+
+        // Metodos de la clase //
+        public void agg(objetoPila objetoNuevo) // Metodo para agregar otros objetos a la pila //
+        {
+            if (objeto == null)
+            {
+                objeto = objetoNuevo;
+            }
+            else
+            {
+                // Ciclo para recorrer la pila y guardar donde corresponde el nuevo objeto //
+                while (objeto.arriba != null)
+                {
+                    objeto.arriba = objeto.arriba;
+                }
+                // asignación al objeto que entrara a la pila //
+                objetoNuevo.arriba = objeto;
+                objeto = objetoNuevo;
+            }
+        }
+        public string imprimir() // Metodo para imprimir los componentes de la pila //
+        {
+            if (objeto != null)
+            {
+                while (objeto.arriba != null)
+                {
+                    Console.Write("El nombre escrito es: ");
+                    Console.WriteLine(objeto.getNombre());
+                    Console.Write("La edad escrita es: ");
+                    Console.WriteLine(objeto.getEdad());
+                    Console.Write("El sexo escrito es: ");
+                    Console.WriteLine(objeto.getGenero());
+                    objeto.arriba = objeto.arriba;
+                }
+                Console.Write("El nombre escrito es: ");
+                Console.WriteLine(objeto.getNombre());
+                Console.Write("La edad escrita es: ");
+                Console.WriteLine(objeto.getEdad());
+                Console.Write("El sexo escrito es: ");
+                Console.WriteLine(objeto.getGenero());
+            }
+        }
+
     }
     public class objetoPila
     {
         // variables //
-        private objetoPila objSig = null; // Variable privada para asimilar al siguiente componente que vendra //
+        public objetoPila arriba = null; // Variable publica para determinar al componente de arriba //
         private string nombre = ""; // Variable nombre //
         private string edad = "0"; // Variable edad //
         private string genero = ""; // Variable genero //
 
         // Constructor de la clase //
         public objetoPila()
-        {
-        }
-
+        { }
 
         // Metodos //
         public void setNombre(string Nombre)  // Asignar nombre //
@@ -89,8 +139,8 @@ namespace Estructuras_Dinamicas
                 genero = "Otro";
             }
         }
-        public string getNombre() => nombre;
-        public string getEdad() => edad;
-        public string getGenero() => genero;
+        public string getNombre() => nombre; // Retorno de la variable nombre //
+        public string getEdad() => edad; // Retorno de la variable edad //
+        public string getGenero() => genero; // Retorno de la variable genero //
     }
 }
