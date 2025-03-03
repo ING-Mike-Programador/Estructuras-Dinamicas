@@ -14,7 +14,85 @@ namespace Estructuras_Dinamicas
             string[] nombres = { "Miguel", "Jessica", "Itzel", "Javier", "Luis", "Rebeca" };
             int[] edades = { 20, 22, 30, 20, 23, 12 };
             string[] sexo = { "Masculino", "Femenino", "Femenino", "Masculino", "Masculino", "Femenino" };
+        }
+    }
+    public class objetoCola
+    {
+        // variables //
+        public objetoCola siguiente = null; // Variable publica para determinar al componente de arriba //
+        private string nombre = ""; // Variable nombre //
+        private string edad = "0"; // Variable edad //
+        private string genero = ""; // Variable genero //
 
+        // Consturctores de la clase //
+        public objetoCola()
+        {
+        }
+        public objetoCola(string Nombre)
+        {
+            setNombre(Nombre);
+            setEdad(0);
+            setGenero("");
+        }
+        public objetoCola(string Nombre, int Edad)
+        {
+            setNombre(Nombre);
+            setEdad(Edad);
+            setGenero("");
+        }
+        public objetoCola(string Nombre, int Edad, string Genero)
+        {
+            setNombre(Nombre);
+            setEdad(Edad);
+            setGenero(Genero);
+        }
+
+        // Metodos //
+        public void setNombre(string Nombre)  // Asignar nombre //
+        {
+            if (Nombre != null && Nombre.Trim() != "")
+            {
+                nombre = Nombre.Trim();
+            }
+            else
+            {
+                nombre = "Desconocido";
+            }
+        }
+        public void setEdad(int Edad) // Asignar edad //
+        {
+            if (Edad != null && Edad > 0)
+            {
+                edad = Edad.ToString();
+            }
+            else
+            {
+                edad = "Desconocida";
+            }
+        }
+        public void setGenero(string Genero) // Asignar genero //
+        {
+            if (Genero != null && Genero.Trim() != "")
+            {
+                genero = Genero.Trim();
+            }
+            else
+            {
+                genero = "Otro";
+            }
+        }
+        public string getNombre() => nombre; // Retorno de la variable nombre //
+        public string getEdad() => edad; // Retorno de la variable edad //
+        public string getGenero() => genero; // Retorno de la variable genero //
+    }
+
+    public class pruebaPila
+    {
+        public pruebaPila()
+        {
+            string[] nombres = { "Miguel", "Jessica", "Itzel", "Javier", "Luis", "Rebeca" };
+            int[] edades = { 20, 22, 30, 20, 23, 12 };
+            string[] sexo = { "Masculino", "Femenino", "Femenino", "Masculino", "Masculino", "Femenino" };
             pila instanciaPila = new pila();
 
             Console.WriteLine("ESCRIBIENDO......");
@@ -139,7 +217,7 @@ namespace Estructuras_Dinamicas
 
         // Constructores de la clase pila //
         public pila() // Constructor vacio //
-        { 
+        {
         }
 
         public pila(objetoPila objeto) // Constructor para recibir el objeto //
@@ -212,7 +290,6 @@ namespace Estructuras_Dinamicas
 
         }
     }
-   
     public class objetoPila
     {
         // variables //
@@ -224,6 +301,25 @@ namespace Estructuras_Dinamicas
         // Constructor de la clase //
         public objetoPila()
         { }
+        public objetoPila(string Nombre)
+        {
+            setNombre(Nombre);
+            setEdad(0);
+            setGenero("");
+        }
+        public objetoPila(string Nombre, int Edad)
+        {
+            setNombre(Nombre);
+            setEdad(Edad);
+            setGenero("");
+        }
+        public objetoPila(string Nombre, int Edad, string Genero)
+        {
+            setNombre(Nombre);
+            setEdad(Edad);
+            setGenero(Genero);
+        }
+
 
         // Metodos //
         public void setNombre(string Nombre)  // Asignar nombre //
