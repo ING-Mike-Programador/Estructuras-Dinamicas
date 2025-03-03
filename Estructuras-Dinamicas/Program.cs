@@ -16,6 +16,18 @@ namespace Estructuras_Dinamicas
             string[] sexo = { "Masculino", "Femenino", "Femenino", "Masculino", "Masculino", "Femenino" };
         }
     }
+    public class Cola
+    {
+        // Variables de la clase //
+        private objetoCola objeto = null; // Varible privada del objeto de la pila //
+
+        // Constructores de la clase pila //
+        public pila() // Constructor vacio //
+        { }
+
+        // Metodos de la clase //
+
+    }
     public class objetoCola
     {
         // variables //
@@ -217,12 +229,11 @@ namespace Estructuras_Dinamicas
 
         // Constructores de la clase pila //
         public pila() // Constructor vacio //
-        {
-        }
+        { }
 
         public pila(objetoPila objeto) // Constructor para recibir el objeto //
         {
-            this.objeto = objeto;
+            agg(objeto);
         }
 
         // Metodos de la clase //
