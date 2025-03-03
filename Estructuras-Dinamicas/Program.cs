@@ -40,11 +40,93 @@ namespace Estructuras_Dinamicas
             Console.WriteLine("Presiona ENTER para Imprimir");
             Console.WriteLine("--------------------------------------------");
             Console.ReadLine();
-            Console.WriteLine();
 
             instanciaPila.imprimir();
 
             Console.WriteLine();
+            Console.WriteLine("Presiona ENTER para Eliminar de la pila");
+            Console.ReadLine();
+            Console.WriteLine();
+
+            instanciaPila.Eliminar();
+
+            Console.WriteLine("Imprimiendo......");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine();
+
+            instanciaPila.imprimir();
+            Console.WriteLine("Presiona ENTER para Eliminar de la pila otra vez");
+            Console.ReadLine();
+            Console.WriteLine();
+
+            instanciaPila.Eliminar();
+
+            Console.WriteLine("Imprimiendo......");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine();
+
+            instanciaPila.imprimir();
+
+            Console.WriteLine("Presiona ENTER para Eliminar de la pila otra vez");
+            Console.ReadLine();
+            Console.WriteLine();
+
+            instanciaPila.Eliminar();
+
+            Console.WriteLine("Imprimiendo......");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine();
+
+            instanciaPila.imprimir();
+
+            Console.WriteLine("Presiona ENTER para Eliminar de la pila otra vez");
+            Console.ReadLine();
+            Console.WriteLine();
+
+            instanciaPila.Eliminar();
+
+            Console.WriteLine("Imprimiendo......");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine();
+
+            instanciaPila.imprimir();
+
+            Console.WriteLine("Presiona ENTER para Eliminar de la pila otra vez");
+            Console.ReadLine();
+            Console.WriteLine();
+
+            instanciaPila.Eliminar();
+
+            Console.WriteLine("Imprimiendo......");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine();
+
+            instanciaPila.imprimir();
+
+            Console.WriteLine("Presiona ENTER para Eliminar de la pila otra vez");
+            Console.ReadLine();
+            Console.WriteLine();
+
+            instanciaPila.Eliminar();
+
+            Console.WriteLine("Imprimiendo......");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine();
+
+            instanciaPila.imprimir();
+
+            Console.WriteLine("Presiona ENTER para Eliminar de la pila otra vez");
+            Console.ReadLine();
+            Console.WriteLine();
+
+            instanciaPila.Eliminar();
+
+            Console.WriteLine("Imprimiendo......");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine();
+
+            instanciaPila.imprimir();
+
             Console.WriteLine();
             Console.WriteLine("Presiona ENTER para terminar");
             Console.ReadLine();
@@ -57,7 +139,8 @@ namespace Estructuras_Dinamicas
 
         // Constructores de la clase pila //
         public pila() // Constructor vacio //
-        { }
+        { 
+        }
 
         public pila(objetoPila objeto) // Constructor para recibir el objeto //
         {
@@ -99,20 +182,34 @@ namespace Estructuras_Dinamicas
                     impresiones(recorrido);
                 }
             }
-            Console.WriteLine();
-            Console.WriteLine("No hay nada que imprimir");
-
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("No hay nada que imprimir");
+            }
         }
-        private void impresiones(objetoPila datos)
+        public void Eliminar() // Metodo para eliminar los componentes de la pila //
         {
-            Console.WriteLine();
+            if (objeto != null)
+            {
+                objeto = objeto.arriba;
+            }
+            else
+            {
+                Console.WriteLine("La pila esta vacia");
+            }
+        }
+        private void impresiones(objetoPila datos)   // Función para mantener mas limpio el codigo //
+        {
+            Console.WriteLine("______________________________");
             Console.Write("El nombre escrito es: ");
             Console.WriteLine(datos.getNombre());
             Console.Write("La edad escrita es: ");
             Console.WriteLine(datos.getEdad());
             Console.Write("El sexo escrito es: ");
             Console.WriteLine(datos.getGenero());
-            Console.WriteLine();
+            Console.WriteLine("______________________________");
+
         }
     }
    
