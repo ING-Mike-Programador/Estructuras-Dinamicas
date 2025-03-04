@@ -22,11 +22,77 @@ namespace Estructuras_Dinamicas
         private objetoCola objeto = null; // Varible privada del objeto de la pila //
 
         // Constructores de la clase pila //
-        public pila() // Constructor vacio //
+        public Cola() // Constructor vacio //
         { }
+        public Cola(objetoCola nuevo)
+        {
+            agg(nuevo);
+        }
 
         // Metodos de la clase //
+        public void agg(objetoPila objetoNuevo) // Metodo para agregar otros objetos a la pila //
+        {
+            if (objeto == null)
+            {
+                objeto = objetoNuevo;
+            }
+            else
+            {
+                objetoNuevo.arriba = objeto;
+                objeto = objetoNuevo;
+            }
+        }
+        public void imprimir() // Metodo para imprimir los componentes de la pila //
+        {
+            if (objeto != null)
+            {
+                if (objeto.arriba == null)
+                {
+                    impresiones(objeto);
+                }
+                else
+                {
+                    impresiones(objeto);
 
+                    objetoPila recorrido = objeto.arriba;
+
+                    while (recorrido.arriba != null)
+                    {
+                        impresiones(recorrido);
+                        recorrido = recorrido.arriba;
+                    }
+                    impresiones(recorrido);
+                }
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("No hay nada que imprimir");
+            }
+        }
+        public void Eliminar() // Metodo para eliminar los componentes de la pila //
+        {
+            if (objeto != null)
+            {
+                objeto = objeto.arriba;
+            }
+            else
+            {
+                Console.WriteLine("La pila esta vacia");
+            }
+        }
+        private void impresiones(objetoPila datos)   // Función para mantener mas limpio el codigo //
+        {
+            Console.WriteLine("______________________________");
+            Console.Write("El nombre escrito es: ");
+            Console.WriteLine(datos.getNombre());
+            Console.Write("La edad escrita es: ");
+            Console.WriteLine(datos.getEdad());
+            Console.Write("El sexo escrito es: ");
+            Console.WriteLine(datos.getGenero());
+            Console.WriteLine("______________________________");
+
+        }
     }
     public class objetoCola
     {
