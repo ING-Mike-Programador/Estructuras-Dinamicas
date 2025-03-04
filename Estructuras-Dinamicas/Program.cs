@@ -96,7 +96,11 @@ namespace Estructuras_Dinamicas
                     Console.WriteLine("No hay nada que imprimir");
                 }
             }
-            public void Eliminar() // Metodo para eliminar los componentes de la pila //
+            public void Buscar()
+            {
+
+            }
+            public void eliminar() // Metodo para eliminar los componentes de la pila //
             {
                 if (lista.siguiente == null) // En caso que solo sea 1 solo elemento en la cola //
                 {
@@ -135,34 +139,43 @@ namespace Estructuras_Dinamicas
             // variables //
             public objetoLista siguiente = null; // Variable publica para determinar al componente de arriba //
             public objetoLista anterior = null; // Variable publica para determinar al componente de arriba //
+            private string identificador = ""; // Variable identificador //
             private string nombre = ""; // Variable nombre //
             private string edad = "0"; // Variable edad //
             private string genero = ""; // Variable genero //
 
             // Consturctores de la clase //
-            public objetoLista()
+            public objetoLista(int Identificador)
             {
+                setID(Identificador);
             }
-            public objetoLista(string Nombre)
+            public objetoLista(int Identificador,string Nombre)
             {
+                setID(Identificador);
                 setNombre(Nombre);
                 setEdad(0);
                 setGenero("");
             }
-            public objetoLista(string Nombre, int Edad)
+            public objetoLista(string Identificador,string Nombre, int Edad)
             {
+                setID(Identificador);
                 setNombre(Nombre);
                 setEdad(Edad);
                 setGenero("");
             }
-            public objetoLista(string Nombre, int Edad, string Genero)
+            public objetoLista(string Identificador,string Nombre, int Edad, string Genero)
             {
+                setID(Identificador);
                 setNombre(Nombre);
                 setEdad(Edad);
                 setGenero(Genero);
             }
 
             // Metodos //
+            public void setID(int Identificador)
+            {
+                identificador = Identificador;
+            }
             public void setNombre(string Nombre)  // Asignar nombre //
             {
                 if (Nombre != null && Nombre.Trim() != "")
@@ -196,6 +209,7 @@ namespace Estructuras_Dinamicas
                     genero = "Otro";
                 }
             }
+            public string getIdentificador() => identificador; // Retorno de la variable nombre //
             public string getNombre() => nombre; // Retorno de la variable nombre //
             public string getEdad() => edad; // Retorno de la variable edad //
             public string getGenero() => genero; // Retorno de la variable genero //
