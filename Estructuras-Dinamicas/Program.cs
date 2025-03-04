@@ -30,7 +30,7 @@ namespace Estructuras_Dinamicas
         }
 
         // Metodos de la clase //
-        public void agg(objetoPila objetoNuevo) // Metodo para agregar otros objetos a la pila //
+        public void agg(objetoCola objetoNuevo) // Metodo para agregar otros objetos a la pila //
         {
             if (objeto == null)
             {
@@ -38,8 +38,12 @@ namespace Estructuras_Dinamicas
             }
             else
             {
-                objetoNuevo.arriba = objeto;
-                objeto = objetoNuevo;
+                objetoCola objetoTemporal = objeto;
+                while (objetoTemporal.siguiente != null)
+                {
+                    objetoTemporal.siguiente = objetoTemporal.siguiente.siguiente;
+                }
+                objetoTemporal.siguiente = objetoNuevo;
             }
         }
         public void imprimir() // Metodo para imprimir los componentes de la pila //
@@ -54,7 +58,7 @@ namespace Estructuras_Dinamicas
                 {
                     impresiones(objeto);
 
-                    objetoPila recorrido = objeto.arriba;
+                    objetoCola recorrido = objeto.siguiente;
 
                     while (recorrido.arriba != null)
                     {
