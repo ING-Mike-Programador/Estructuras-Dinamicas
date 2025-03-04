@@ -14,6 +14,33 @@ namespace Estructuras_Dinamicas
             string[] nombres = { "Miguel", "Jessica", "Itzel", "Javier", "Luis", "Rebeca" };
             int[] edades = { 20, 22, 30, 20, 23, 12 };
             string[] sexo = { "Masculino", "Femenino", "Femenino", "Masculino", "Masculino", "Femenino" };
+            Cola instanciaCola = new Cola();
+
+            Console.WriteLine("ESCRIBIENDO......");
+
+            for (int i = 0; i < 6; i++)
+            {
+                objetoCola objtCola = new objetoCola(nombres[i], edades[i], sexo[i]);
+
+                Console.Write("El nombre escrito es: ");
+                Console.WriteLine(objtCola.getNombre());
+                Console.Write("La edad escrita es: ");
+                Console.WriteLine(objtCola.getEdad());
+                Console.Write("El sexo escrito es: ");
+                Console.WriteLine(objtCola.getGenero());
+                Console.WriteLine();
+
+                instanciaCola.agg(objtCola);
+            }
+            Console.WriteLine("Presiona ENTER para Imprimir");
+            Console.WriteLine("--------------------------------------------");
+            Console.ReadLine();
+
+            instanciaCola.imprimir();
+
+            Console.WriteLine();
+            Console.WriteLine("Presiona ENTER para terminar");
+            Console.ReadLine();
         }
     }
     public class Cola
@@ -28,6 +55,7 @@ namespace Estructuras_Dinamicas
         {
             agg(nuevo);
         }
+
 
         // Metodos de la clase //
         public void agg(objetoCola objetoNuevo) // Metodo para agregar otros objetos a la pila //
@@ -50,7 +78,7 @@ namespace Estructuras_Dinamicas
         {
             if (objeto != null)
             {
-                if (objeto.arriba == null)
+                if (objeto.siguiente == null)
                 {
                     impresiones(objeto);
                 }
@@ -60,10 +88,10 @@ namespace Estructuras_Dinamicas
 
                     objetoCola recorrido = objeto.siguiente;
 
-                    while (recorrido.arriba != null)
+                    while (recorrido.siguiente != null)
                     {
                         impresiones(recorrido);
-                        recorrido = recorrido.arriba;
+                        recorrido = recorrido.siguiente;
                     }
                     impresiones(recorrido);
                 }
@@ -78,14 +106,14 @@ namespace Estructuras_Dinamicas
         {
             if (objeto != null)
             {
-                objeto = objeto.arriba;
+                objeto = objeto.siguiente;
             }
             else
             {
                 Console.WriteLine("La pila esta vacia");
             }
         }
-        private void impresiones(objetoPila datos)   // Función para mantener mas limpio el codigo //
+        private void impresiones(objetoCola datos)   // Función para mantener mas limpio el codigo //
         {
             Console.WriteLine("______________________________");
             Console.Write("El nombre escrito es: ");
