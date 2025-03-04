@@ -30,7 +30,7 @@ namespace Estructuras_Dinamicas
 
                 Console.WriteLine("ESCRIBIENDO......");
 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     objetoLista objtLista = new objetoLista(i + 1, nombres[i], edades[i], sexo[i]);
 
@@ -51,6 +51,31 @@ namespace Estructuras_Dinamicas
                 Console.ReadLine();
 
                 instanciaLista.imprimirTodo();
+                string id = "0";
+                bool ciclo = true;
+                do
+                {
+                    Console.Write("BUSCAR IDENTIFICADOR: ");
+                    id = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.WriteLine("BUSCANDO.................");
+                    Console.WriteLine("--------------------------------------------");
+                    try
+                    {
+                        instanciaLista.Buscar(int.Parse(id.Trim()));
+                        Console.Write("Deseas terminar? (sí: s / no: cualquier tecla) ");
+                        string desicion = Console.ReadLine();
+                        if (desicion.Trim().ToLower() == "s")
+                        {
+                            ciclo = false;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        ciclo = true;
+                    }
+                } while (ciclo);
+
 
                 Console.WriteLine();
                 Console.WriteLine("Presiona ENTER para terminar");
