@@ -66,12 +66,19 @@ namespace Estructuras_Dinamicas
             }
             else
             {
-                objetoCola objetoTemporal = objeto;
-                while (objetoTemporal.siguiente != null)
+                if (objeto.siguiente == null)
                 {
-                    objetoTemporal.siguiente = objetoTemporal.siguiente.siguiente;
+                    objeto.siguiente = objetoNuevo;
                 }
-                objetoTemporal.siguiente = objetoNuevo;
+                else
+                {
+                    objetoCola objetoTemporal = objeto.siguiente;
+                    while (objetoTemporal.siguiente != null)
+                    {
+                        objetoTemporal = objetoTemporal.siguiente;
+                    }
+                    objetoTemporal.siguiente = objetoNuevo;
+                }
             }
         }
         public void imprimir() // Metodo para imprimir los componentes de la pila //
