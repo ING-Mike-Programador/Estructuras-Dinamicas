@@ -134,6 +134,7 @@ namespace Estructuras_Dinamicas
         {
             // variables //
             public objetoLista siguiente = null; // Variable publica para determinar al componente de arriba //
+            public objetoLista anterior = null; // Variable publica para determinar al componente de arriba //
             private string nombre = ""; // Variable nombre //
             private string edad = "0"; // Variable edad //
             private string genero = ""; // Variable genero //
