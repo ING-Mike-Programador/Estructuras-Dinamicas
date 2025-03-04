@@ -24,7 +24,7 @@ namespace Estructuras_Dinamicas
         public class pruebaLista
         {
             // Constructor para ejecutar al momento de crearlo //
-            public pruebaLista(string[nombres], int edades[], string sexo[]) // se piden en parametros para reutilizar codigo en el resto de los elementos //
+            public pruebaLista(string[] nombres, int[] edades, string[] sexo) // se piden en parametros para reutilizar codigo en el resto de los elementos //
             {
 
             }
@@ -45,42 +45,42 @@ namespace Estructuras_Dinamicas
             // Metodos de la clase //
             public void agg(objetoLista nuevo) // Metodo para agregar otros objetos a la pila //
             {
-                if (objeto == null)
+                if (lista == null)
                 {
-                    objeto = objetoNuevo;
+                    lista = nuevo;
                 }
                 else
                 {
-                    if (objeto.siguiente == null)
+                    if (lista.siguiente == null)
                     {
-                        objeto.siguiente = objetoNuevo;
+                        lista.siguiente = nuevo;
                     }
                     else
                     {
-                        objetoCola objetoTemporal = objeto.siguiente;
+                        objetoLista objetoTemporal = lista.siguiente;
                         while (objetoTemporal.siguiente != null)
                         {
                             objetoTemporal = objetoTemporal.siguiente;
                         }
-                        objetoTemporal.siguiente = objetoNuevo;
+                        objetoTemporal.siguiente = nuevo;
                     }
                 }
             }
-            public void imprimir() // Metodo para imprimir los componentes de la pila //
+            public void imprimirTodo() // Metodo para imprimir los componentes de la pila //
             {
                 Console.WriteLine("______________________________");
                 Console.WriteLine("IMPRIMIENDO.......");
-                if (objeto != null)
+                if (lista != null)
                 {
-                    if (objeto.siguiente == null)
+                    if (lista.siguiente == null)
                     {
-                        impresiones(objeto);
+                        impresiones(lista);
                     }
                     else
                     {
-                        impresiones(objeto);
+                        impresiones(lista);
 
-                        objetoCola recorrido = objeto.siguiente;
+                        objetoLista recorrido = lista.siguiente;
 
                         while (recorrido.siguiente != null)
                         {
@@ -98,14 +98,14 @@ namespace Estructuras_Dinamicas
             }
             public void Eliminar() // Metodo para eliminar los componentes de la pila //
             {
-                if (objeto.siguiente == null) // En caso que solo sea 1 solo elemento en la cola //
+                if (lista.siguiente == null) // En caso que solo sea 1 solo elemento en la cola //
                 {
-                    objeto = null;
+                    lista = null;
                 }
                 else // En caso de ser 2 o mas elementos //
                 {
-                    objetoCola objetoTemporal = objeto.siguiente,
-                        objetoTemporalAnterior = objeto;
+                    objetoLista objetoTemporal = lista.siguiente,
+                        objetoTemporalAnterior = lista;
 
                     while (objetoTemporal.siguiente != null)
                     {
@@ -128,23 +128,81 @@ namespace Estructuras_Dinamicas
                 Console.Write("El sexo escrito es: ");
                 Console.WriteLine(datos.getGenero());
                 Console.WriteLine("______________________________");
-
             }
-
-
         }
         public class objetoLista
         {
-            // Variables de la clase //
+            // variables //
+            public objetoLista siguiente = null; // Variable publica para determinar al componente de arriba //
+            private string nombre = ""; // Variable nombre //
+            private string edad = "0"; // Variable edad //
+            private string genero = ""; // Variable genero //
 
-            // Constructor de la clase //
+            // Consturctores de la clase //
+            public objetoLista()
+            {
+            }
+            public objetoLista(string Nombre)
+            {
+                setNombre(Nombre);
+                setEdad(0);
+                setGenero("");
+            }
+            public objetoLista(string Nombre, int Edad)
+            {
+                setNombre(Nombre);
+                setEdad(Edad);
+                setGenero("");
+            }
+            public objetoLista(string Nombre, int Edad, string Genero)
+            {
+                setNombre(Nombre);
+                setEdad(Edad);
+                setGenero(Genero);
+            }
 
-            // Metodos de la clase //
+            // Metodos //
+            public void setNombre(string Nombre)  // Asignar nombre //
+            {
+                if (Nombre != null && Nombre.Trim() != "")
+                {
+                    nombre = Nombre.Trim();
+                }
+                else
+                {
+                    nombre = "Desconocido";
+                }
+            }
+            public void setEdad(int Edad) // Asignar edad //
+            {
+                if (Edad != null && Edad > 0)
+                {
+                    edad = Edad.ToString();
+                }
+                else
+                {
+                    edad = "Desconocida";
+                }
+            }
+            public void setGenero(string Genero) // Asignar genero //
+            {
+                if (Genero != null && Genero.Trim() != "")
+                {
+                    genero = Genero.Trim();
+                }
+                else
+                {
+                    genero = "Otro";
+                }
+            }
+            public string getNombre() => nombre; // Retorno de la variable nombre //
+            public string getEdad() => edad; // Retorno de la variable edad //
+            public string getGenero() => genero; // Retorno de la variable genero //
         }
         public class pruebaCola
         {
             // Constructor para ejecutar al momento de crearlo //
-            public pruebaCola(string[nombres], int edades[], string sexo[]) // se piden en parametros para reutilizar codigo en el resto de los elementos //
+            public pruebaCola(string[] nombres, int[] edades, string[] sexo) // se piden en parametros para reutilizar codigo en el resto de los elementos //
             {
                 Cola instanciaCola = new Cola();
 
@@ -285,7 +343,7 @@ namespace Estructuras_Dinamicas
                 Console.WriteLine("______________________________");
 
             }
-        
+
         }
         public class objetoCola
         {
@@ -359,7 +417,7 @@ namespace Estructuras_Dinamicas
         public class pruebaPila
         {
             // Constructor de la clase para ejecutar los metodos al iniciar //
-            public pruebaPila(string nombres[], int edades[], string sexo[]) // Parametros para reutilizar datos en el resto de elementos //
+            public pruebaPila(string[] nombres, int[] edades, string[] sexo) // Parametros para reutilizar datos en el resto de elementos //
             {
                 pila instanciaPila = new pila();
 
