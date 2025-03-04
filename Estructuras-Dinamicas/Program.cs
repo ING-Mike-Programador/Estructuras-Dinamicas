@@ -38,6 +38,14 @@ namespace Estructuras_Dinamicas
 
             instanciaCola.imprimir();
 
+            Console.WriteLine("Presiona ENTER para Eliminar");
+            Console.WriteLine("--------------------------------------------");
+            Console.ReadLine();
+
+            instanciaCola.Eliminar();
+            Console.WriteLine();
+            instanciaCola.imprimir();
+
             Console.WriteLine();
             Console.WriteLine("Presiona ENTER para terminar");
             Console.ReadLine();
@@ -83,6 +91,8 @@ namespace Estructuras_Dinamicas
         }
         public void imprimir() // Metodo para imprimir los componentes de la pila //
         {
+            Console.WriteLine("______________________________");
+            Console.WriteLine("IMPRIMIENDO.......");
             if (objeto != null)
             {
                 if (objeto.siguiente == null)
@@ -111,13 +121,24 @@ namespace Estructuras_Dinamicas
         }
         public void Eliminar() // Metodo para eliminar los componentes de la pila //
         {
-            if (objeto != null)
+            if (objeto.siguiente == null) // En caso que solo sea 1 solo elemento en la cola //
             {
-                objeto = objeto.siguiente;
+                objeto = null;
             }
-            else
+            else // En caso de ser 2 o mas elementos //
             {
-                Console.WriteLine("La pila esta vacia");
+                objetoCola objetoTemporal = objeto.siguiente,
+                    objetoTemporalAnterior = objeto;
+
+                while (objetoTemporal.siguiente != null)
+                {
+                    objetoTemporalAnterior = objetoTemporal;
+                    objetoTemporal = objetoTemporal.siguiente;
+                }
+                Console.WriteLine("______________________________");
+                Console.WriteLine("ELIMINANDO.......");
+                impresiones(objetoTemporal);
+                objetoTemporalAnterior.siguiente = null;
             }
         }
         private void impresiones(objetoCola datos)   // Función para mantener mas limpio el codigo //
