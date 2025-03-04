@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,10 +32,106 @@ namespace Estructuras_Dinamicas
         public class Lista
         {
             // Variables de la clase //
-
+            private objetoLista lista = null;
             // Constructor de la clase //
+            public Lista()
+            { }
+
+            public Lista(objetoLista nuevo)
+            {
+                agg(nuevo);
+            }
 
             // Metodos de la clase //
+            public void agg(objetoLista nuevo) // Metodo para agregar otros objetos a la pila //
+            {
+                if (objeto == null)
+                {
+                    objeto = objetoNuevo;
+                }
+                else
+                {
+                    if (objeto.siguiente == null)
+                    {
+                        objeto.siguiente = objetoNuevo;
+                    }
+                    else
+                    {
+                        objetoCola objetoTemporal = objeto.siguiente;
+                        while (objetoTemporal.siguiente != null)
+                        {
+                            objetoTemporal = objetoTemporal.siguiente;
+                        }
+                        objetoTemporal.siguiente = objetoNuevo;
+                    }
+                }
+            }
+            public void imprimir() // Metodo para imprimir los componentes de la pila //
+            {
+                Console.WriteLine("______________________________");
+                Console.WriteLine("IMPRIMIENDO.......");
+                if (objeto != null)
+                {
+                    if (objeto.siguiente == null)
+                    {
+                        impresiones(objeto);
+                    }
+                    else
+                    {
+                        impresiones(objeto);
+
+                        objetoCola recorrido = objeto.siguiente;
+
+                        while (recorrido.siguiente != null)
+                        {
+                            impresiones(recorrido);
+                            recorrido = recorrido.siguiente;
+                        }
+                        impresiones(recorrido);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("No hay nada que imprimir");
+                }
+            }
+            public void Eliminar() // Metodo para eliminar los componentes de la pila //
+            {
+                if (objeto.siguiente == null) // En caso que solo sea 1 solo elemento en la cola //
+                {
+                    objeto = null;
+                }
+                else // En caso de ser 2 o mas elementos //
+                {
+                    objetoCola objetoTemporal = objeto.siguiente,
+                        objetoTemporalAnterior = objeto;
+
+                    while (objetoTemporal.siguiente != null)
+                    {
+                        objetoTemporalAnterior = objetoTemporal;
+                        objetoTemporal = objetoTemporal.siguiente;
+                    }
+                    Console.WriteLine("______________________________");
+                    Console.WriteLine("ELIMINANDO.......");
+                    impresiones(objetoTemporal);
+                    objetoTemporalAnterior.siguiente = null;
+                }
+            }
+            private void impresiones(objetoLista datos)   // Función para mantener mas limpio el codigo //
+            {
+                Console.WriteLine("______________________________");
+                Console.Write("El nombre escrito es: ");
+                Console.WriteLine(datos.getNombre());
+                Console.Write("La edad escrita es: ");
+                Console.WriteLine(datos.getEdad());
+                Console.Write("El sexo escrito es: ");
+                Console.WriteLine(datos.getGenero());
+                Console.WriteLine("______________________________");
+
+            }
+
+
         }
         public class objetoLista
         {
@@ -188,6 +285,7 @@ namespace Estructuras_Dinamicas
                 Console.WriteLine("______________________________");
 
             }
+        
         }
         public class objetoCola
         {
