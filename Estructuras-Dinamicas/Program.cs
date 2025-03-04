@@ -18,7 +18,7 @@ namespace Estructuras_Dinamicas
             int[] edades = { 20, 22, 30, 20, 23, 12 };
             string[] sexo = { "Masculino", "Femenino", "Femenino", "Masculino", "Masculino", "Femenino" };
             // pruebaCola prueba = new pruebaCola(nombres, edades, sexo);
-
+            pruebaLista lista = new pruebaLista(nombres, edades, sexo);
         }
 
         public class pruebaLista
@@ -26,7 +26,35 @@ namespace Estructuras_Dinamicas
             // Constructor para ejecutar al momento de crearlo //
             public pruebaLista(string[] nombres, int[] edades, string[] sexo) // se piden en parametros para reutilizar codigo en el resto de los elementos //
             {
+                Lista instanciaLista = new Lista();
 
+                Console.WriteLine("ESCRIBIENDO......");
+
+                for (int i = 0; i < 4; i++)
+                {
+                    objetoLista objtLista = new objetoLista(i + 1, nombres[i], edades[i], sexo[i]);
+
+                    Console.Write("El identificador escrito es: ");
+                    Console.WriteLine(objtLista.getIdentificador());
+                    Console.Write("El nombre escrito es: ");
+                    Console.WriteLine(objtLista.getNombre());
+                    Console.Write("La edad escrita es: ");
+                    Console.WriteLine(objtLista.getEdad());
+                    Console.Write("El sexo escrito es: ");
+                    Console.WriteLine(objtLista.getGenero());
+                    Console.WriteLine();
+
+                    instanciaLista.agg(objtLista);
+                }
+                Console.WriteLine("Presiona ENTER para Imprimir");
+                Console.WriteLine("--------------------------------------------");
+                Console.ReadLine();
+
+                instanciaLista.imprimirTodo();
+
+                Console.WriteLine();
+                Console.WriteLine("Presiona ENTER para terminar");
+                Console.ReadLine();
             }
         }
         public class Lista
@@ -48,21 +76,30 @@ namespace Estructuras_Dinamicas
                 if (lista == null)
                 {
                     lista = nuevo;
+                    lista.siguiente = lista;
+                    lista.anterior = lista;
                 }
                 else
                 {
-                    if (lista.siguiente == null)
+                    if (lista.siguiente == lista)
                     {
+                        nuevo.siguiente = lista;
+                        nuevo.anterior = lista;
                         lista.siguiente = nuevo;
+                        lista.anterior = nuevo;
                     }
                     else
                     {
                         objetoLista objetoTemporal = lista.siguiente;
-                        while (objetoTemporal.siguiente != null)
+                        while (objetoTemporal.siguiente != lista)
                         {
                             objetoTemporal = objetoTemporal.siguiente;
                         }
+                        // objetoTemporal.siguiente = nuevo; //
+                        nuevo.siguiente = lista;
+                        nuevo.anterior = objetoTemporal;
                         objetoTemporal.siguiente = nuevo;
+                        lista.anterior = nuevo;
                     }
                 }
             }
@@ -82,7 +119,7 @@ namespace Estructuras_Dinamicas
 
                         objetoLista recorrido = lista.siguiente;
 
-                        while (recorrido.siguiente != null)
+                        while (recorrido.siguiente != lista)
                         {
                             impresiones(recorrido);
                             recorrido = recorrido.siguiente;
@@ -112,9 +149,9 @@ namespace Estructuras_Dinamicas
                     else
                     {
                         objetoLista recorrido = lista.siguiente;
-                        while (recorrido != null)
+                        while (recorrido != lista)
                         {
-                            if (recorrido.getIdentificador == ID)
+                            if (recorrido.getIdentificador() == ID)
                             {
                                 impresiones(recorrido);
                                 encontro = true;
@@ -141,7 +178,7 @@ namespace Estructuras_Dinamicas
                     objetoLista objetoTemporal = lista.siguiente,
                         objetoTemporalAnterior = lista;
 
-                    while (objetoTemporal.siguiente != null)
+                    while (objetoTemporal.siguiente != lista)
                     {
                         objetoTemporalAnterior = objetoTemporal;
                         objetoTemporal = objetoTemporal.siguiente;
@@ -155,6 +192,12 @@ namespace Estructuras_Dinamicas
             private void impresiones(objetoLista datos)   // Función para mantener mas limpio el codigo //
             {
                 Console.WriteLine("______________________________");
+                Console.Write("El identificador anterior es: ");
+                Console.WriteLine(datos.anterior.getIdentificador());
+                Console.Write("El identificador es: ");
+                Console.WriteLine(datos.getIdentificador()); 
+                Console.Write("El identificador siguiente es: ");
+                Console.WriteLine(datos.siguiente.getIdentificador());
                 Console.Write("El nombre escrito es: ");
                 Console.WriteLine(datos.getNombre());
                 Console.Write("La edad escrita es: ");
@@ -186,14 +229,14 @@ namespace Estructuras_Dinamicas
                 setEdad(0);
                 setGenero("");
             }
-            public objetoLista(string Identificador, string Nombre, int Edad)
+            public objetoLista(int Identificador, string Nombre, int Edad)
             {
                 setID(Identificador);
                 setNombre(Nombre);
                 setEdad(Edad);
                 setGenero("");
             }
-            public objetoLista(string Identificador, string Nombre, int Edad, string Genero)
+            public objetoLista(int Identificador, string Nombre, int Edad, string Genero)
             {
                 setID(Identificador);
                 setNombre(Nombre);
