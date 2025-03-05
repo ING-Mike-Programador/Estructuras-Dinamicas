@@ -77,8 +77,25 @@ namespace Estructuras_Dinamicas
                         ciclo = true;
                     }
                 } while (ciclo);
+                do
+                {
+                    Console.Write("ELIMINAR POR IDENTIFICADOR: ");
+                    id = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.WriteLine("BUSCANDO PARA ELIMINAR.................");
+                    Console.WriteLine("--------------------------------------------");
 
-
+                    try
+                    {
+                        instanciaLista.eliminar(int.Parse(id.Trim()));
+                        ciclo = false;
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Identificador invalido");
+                        ciclo = true;
+                    }
+                } while (ciclo);
                 Console.WriteLine();
                 Console.WriteLine("Presiona ENTER para terminar");
                 Console.ReadLine();
@@ -191,26 +208,41 @@ namespace Estructuras_Dinamicas
                     Console.WriteLine("No hay nada que imprimir");
                 }
             }
-            public void eliminar() // Metodo para eliminar los componentes de la pila //
+            public void eliminar(int identificador) // Metodo para eliminar los componentes de la pila //
             {
-                if (lista.siguiente == null) // En caso que solo sea 1 solo elemento en la cola //
+                string ID = identificador.ToString();
+                Console.WriteLine("______________________________");
+                Console.WriteLine("ELIMINANDO ELEMENTO.......");
+                Buscar(identificador);
+                if (lista != null)
                 {
-                    lista = null;
-                }
-                else // En caso de ser 2 o mas elementos //
-                {
-                    objetoLista objetoTemporal = lista.siguiente,
-                        objetoTemporalAnterior = lista;
-
-                    while (objetoTemporal.siguiente != lista)
+                    if (lista.getIdentificador() == ID)
                     {
-                        objetoTemporalAnterior = objetoTemporal;
-                        objetoTemporal = objetoTemporal.siguiente;
+                        lista.anterior.siguiente = lista.siguiente;
+                        lista.siguiente.anterior = lista.anterior;
+                        lista = lista.siguiente;
                     }
-                    Console.WriteLine("______________________________");
-                    Console.WriteLine("ELIMINANDO.......");
-                    impresiones(objetoTemporal);
-                    objetoTemporalAnterior.siguiente = null;
+                    else
+                    {
+                        objetoLista recorrido = lista.siguiente;
+                        if (Busqueda(ref recorrido, ID))
+                        {
+                            recorrido.anterior.siguiente = recorrido.siguiente;
+                            recorrido.siguiente.anterior = recorrido.anterior;
+                            recorrido = lista.siguiente;
+                        }
+                        else
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine("No se encontro el elemento");
+                        }
+                    }
+                    imprimirTodo();
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("No hay nada que imprimir");
                 }
             }
             private void impresiones(objetoLista datos)   // Función para mantener mas limpio el codigo //
