@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
@@ -161,7 +163,6 @@ namespace Estructuras_Dinamicas
             public void Buscar(int identificador)
             {
                 string ID = identificador.ToString();
-                bool encontro = false; // variable para identificar si encontro al elemento buscado //
                 Console.WriteLine("______________________________");
                 Console.WriteLine("IMPRIMIENDO ELEMENTO.......");
                 if (lista != null)
@@ -169,24 +170,22 @@ namespace Estructuras_Dinamicas
                     if (lista.getIdentificador() == ID)
                     {
                         impresiones(lista);
-                        encontro = true;
                     }
                     else
                     {
                         objetoLista recorrido = lista.siguiente;
-                        while (recorrido != lista)
+                        if (Busqueda(ref recorrido, ID))
                         {
-                            if (recorrido.getIdentificador() == ID)
-                            {
-                                impresiones(recorrido);
-                                encontro = true;
-                                break;
-                            }
-                            recorrido = recorrido.siguiente;
+                            impresiones(recorrido);
+                        }
+                        else
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine("No se encontro el elemento");
                         }
                     }
                 }
-                if (encontro)
+                else
                 {
                     Console.WriteLine();
                     Console.WriteLine("No hay nada que imprimir");
@@ -230,6 +229,20 @@ namespace Estructuras_Dinamicas
                 Console.Write("El sexo escrito es: ");
                 Console.WriteLine(datos.getGenero());
                 Console.WriteLine("______________________________");
+            }
+            private bool Busqueda(ref objetoLista buscar, string ID) // Funcion para poder reutilizar la busqueda en Buscar y Eliminar //
+            {
+                bool encontro = false; // Variable para definir si se encontro o no el elemento //
+                while (buscar.getIdentificador() != lista.getIdentificador()) // Ciclo de Busqueda //
+                {
+                    if (buscar.getIdentificador() == ID) // Condicional para veriificar si el elemento actual es el buscado //
+                    {
+                        encontro = true;
+                        break;
+                    }
+                    buscar = buscar.siguiente;
+                }
+                return encontro;
             }
         }
         public class objetoLista
