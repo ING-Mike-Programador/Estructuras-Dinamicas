@@ -1,0 +1,15 @@
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\bin\Debug\net8.0\Arboles.exe
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\bin\Debug\net8.0\Arboles.deps.json
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\bin\Debug\net8.0\Arboles.runtimeconfig.json
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\bin\Debug\net8.0\Arboles.dll
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\bin\Debug\net8.0\Arboles.pdb
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\obj\Debug\net8.0\Arboles.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\obj\Debug\net8.0\Arboles.AssemblyInfoInputs.cache
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\obj\Debug\net8.0\Arboles.AssemblyInfo.cs
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\obj\Debug\net8.0\Arboles.csproj.CoreCompileInputs.cache
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\obj\Debug\net8.0\Arboles.sourcelink.json
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\obj\Debug\net8.0\Arboles.dll
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\obj\Debug\net8.0\refint\Arboles.dll
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\obj\Debug\net8.0\Arboles.pdb
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\obj\Debug\net8.0\Arboles.genruntimeconfig.cache
+C:\Users\migue\source\repos\ING-Mike-Programador\Estructuras-Dinamicas\Arboles\obj\Debug\net8.0\ref\Arboles.dll
