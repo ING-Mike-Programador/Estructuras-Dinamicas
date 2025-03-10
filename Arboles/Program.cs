@@ -25,11 +25,17 @@ namespace Arboles
 
                 arbol.Agregar(objtNodo);
             }
-            Console.WriteLine("Presiona ENTER para Imprimir");
+            Console.WriteLine("Presiona ENTER para Imprimir IRD");
             Console.WriteLine("--------------------------------------------");
             Console.ReadLine();
 
             arbol.ImprimirIRD();
+
+            Console.WriteLine("Presiona ENTER para Imprimir DRI");
+            Console.WriteLine("--------------------------------------------");
+            Console.ReadLine();
+
+            arbol.ImprimirDRI();
 
             Console.WriteLine();
             Console.WriteLine("Presiona ENTER para terminar");
@@ -39,14 +45,17 @@ namespace Arboles
 
     public class Arbol
     {
+        // Variables//
         private objetoNodo Nodo = null;
 
+        // Constructores //
         public Arbol() { }
         public Arbol(objetoNodo nodo)
         {
             Agregar(nodo);
         }
 
+        // Metodos//
         public void Agregar(objetoNodo nodo) // Metodo para agregar //
         {
             if (Nodo == null)
@@ -65,7 +74,7 @@ namespace Arboles
                     else
                     {
                         objetoNodo recorridoNodo = Nodo.Derecha;
-                        recorridoAgg(recorridoNodo,nodo);
+                        recorridoAgg(recorridoNodo, nodo);
                     }
                 }
                 else if (nodo.Persona.getID() < Nodo.Persona.getID())
@@ -118,12 +127,12 @@ namespace Arboles
             {
                 if (Nodo.Izquierda != null)
                 {
-                    recorridoImp(Nodo.Izquierda);
+                    recorridoIRD(Nodo.Izquierda);
                 }
                 Impresiones(Nodo);
                 if (Nodo.Derecha != null)
                 {
-                    recorridoImp(Nodo.Derecha);
+                    recorridoIRD(Nodo.Derecha);
                 }
             }
             else
@@ -131,16 +140,48 @@ namespace Arboles
                 Console.WriteLine("No hay nada en el arbol");
             }
         }
-        public void recorridoImp(objetoNodo Nodo) // Recorrido recursivo para imprimir de menor a mayor (Izquierda-Raiz-Derecha) //
+        public void recorridoIRD(objetoNodo Nodo) // Recorrido recursivo para imprimir de menor a mayor (Izquierda-Raiz-Derecha) //
         {
             if (Nodo.Izquierda != null)
             {
-                recorridoImp(Nodo.Izquierda);
+                recorridoIRD(Nodo.Izquierda);
             }
             Impresiones(Nodo);
             if (Nodo.Derecha != null)
             {
-                recorridoImp(Nodo.Derecha);
+                recorridoIRD(Nodo.Derecha);
+            }
+        }
+        public void ImprimirDRI() // Metodo de impresion de mayor a menor (Izquierda-Raiz-Derecha) //
+        {
+            if (Nodo != null)
+            {
+                if (Nodo.Derecha != null)
+                {
+                    recorridoDRI(Nodo.Derecha);
+                }
+                Impresiones(Nodo);
+                if (Nodo.Izquierda != null)
+                {
+                    recorridoDRI(Nodo.Izquierda);
+                }
+                
+            }
+            else
+            {
+                Console.WriteLine("No hay nada en el arbol");
+            }
+        }
+        public void recorridoDRI(objetoNodo Nodo) // Recorrido recursivo para imprimir de mayor a menor (Izquierda-Raiz-Derecha) //
+        {
+            if (Nodo.Derecha != null)
+            {
+                recorridoDRI(Nodo.Derecha);
+            }
+            Impresiones(Nodo);
+            if (Nodo.Izquierda != null)
+            {
+                recorridoDRI(Nodo.Izquierda);
             }
         }
         public void Impresiones(objetoNodo nodo) // Metodo donde se imprimen los datos, para mantener mas limpio el codigo //
