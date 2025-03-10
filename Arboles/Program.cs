@@ -31,11 +31,25 @@ namespace Arboles
 
             arbol.ImprimirIRD();
 
-            Console.WriteLine("Presiona ENTER para Imprimir DRI");
+            Console.WriteLine("ELIMINAR");
+            Console.WriteLine("--------------------------------------------");
+            Console.Write("Escribe el ID a eliminar: ");
+            string id = Console.ReadLine(); ;
+            try
+            {
+                int ID = int.Parse(id);
+                arbol.Eliminar(ID);
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("ID no valido");
+            }
+            Console.WriteLine("Presiona ENTER para Imprimir IRD");
             Console.WriteLine("--------------------------------------------");
             Console.ReadLine();
 
-            arbol.ImprimirDRI();
+            arbol.ImprimirIRD();
 
             Console.WriteLine();
             Console.WriteLine("Presiona ENTER para terminar");
@@ -184,13 +198,98 @@ namespace Arboles
                 recorridoDRI(Nodo.Izquierda);
             }
         }
-        public void Eliminar() // Metodo para eliminar nodos //
+        public void Eliminar(int ID) // Metodo para eliminar nodos //
         {
-
+            if (Nodo != null)
+            {
+                if (Nodo.Persona.getID() == ID)
+                {
+                    if (Nodo.Izquierda != null)
+                    {
+                        objetoNodo nodo = Nodo.Izquierda.Derecha;
+                        Nodo.Izquierda.Derecha = Nodo.Derecha;
+                        Nodo = Nodo.Izquierda;
+                        if (nodo != null)
+                        {
+                            Agregar(nodo);
+                        }
+                    }
+                    else if (Nodo.Derecha != null)
+                    {
+                        objetoNodo nodo = Nodo.Derecha.Izquierda;
+                        Nodo.Derecha.Izquierda = Nodo.Izquierda;
+                        Nodo = Nodo.Derecha;
+                        if (nodo != null)
+                        {
+                            Agregar(nodo);
+                        }
+                    }
+                    else
+                    {
+                        Nodo = null;
+                        Console.WriteLine("El arbol ahora esta vacio");
+                    }
+                }
+                else if (ID < Nodo.Persona.getID())
+                {
+                    recorridoEliminar(Nodo.Izquierda,ID);
+                }
+                else if (ID > Nodo.Persona.getID())
+                {
+                    recorridoEliminar(Nodo.Derecha,ID);
+                }
+                else
+                {
+                    Console.WriteLine("No existe el elemento");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No hay nada en el arbol");
+            }
         }
-        private void recorridoEliminar(objetoNodo Nodo) // recorrido donde se eliminan nodos //
+        private void recorridoEliminar(objetoNodo Nodo, int ID) // recorrido donde se eliminan nodos //
         {
-
+            if (Nodo.Persona.getID() == ID)
+            {
+                if (Nodo.Izquierda != null)
+                {
+                    objetoNodo nodo = Nodo.Izquierda.Derecha;
+                    Nodo.Izquierda.Derecha = Nodo.Derecha;
+                    Nodo = Nodo.Izquierda;
+                    if (nodo != null)
+                    {
+                        Agregar(nodo);
+                    }
+                }
+                else if (Nodo.Derecha != null)
+                {
+                    objetoNodo nodo = Nodo.Derecha.Izquierda;
+                    Nodo.Derecha.Izquierda = Nodo.Izquierda;
+                    Nodo = Nodo.Derecha;
+                    if (nodo != null)
+                    {
+                        Agregar(nodo);
+                    }
+                }
+                else
+                {
+                    Nodo = null;
+                    Console.WriteLine("El arbol ahora esta vacio");
+                }
+            }
+            else if (ID < Nodo.Persona.getID())
+            {
+                recorridoEliminar(Nodo.Izquierda, ID);
+            }
+            else if (ID > Nodo.Persona.getID())
+            {
+                recorridoEliminar(Nodo.Derecha,ID);
+            }
+            else
+            {
+                Console.WriteLine("No existe el elemento");
+            }
         }
         public void Impresiones(objetoNodo nodo) // Metodo donde se imprimen los datos, para mantener mas limpio el codigo //
         {
