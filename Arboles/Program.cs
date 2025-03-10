@@ -152,7 +152,7 @@ namespace Arboles
                 recorridoIRD(Nodo.Derecha);
             }
         }
-        public void ImprimirDRI() // Metodo de impresion de mayor a menor (Izquierda-Raiz-Derecha) //
+        public void ImprimirDRI() // Metodo de impresion de mayor a menor (Derecha-Raiz-Izquierda) //
         {
             if (Nodo != null)
             {
@@ -172,7 +172,7 @@ namespace Arboles
                 Console.WriteLine("No hay nada en el arbol");
             }
         }
-        public void recorridoDRI(objetoNodo Nodo) // Recorrido recursivo para imprimir de mayor a menor (Izquierda-Raiz-Derecha) //
+        public void recorridoDRI(objetoNodo Nodo) // Recorrido recursivo para imprimir de mayor a menor (Derecha-Raiz-Izquierda) //
         {
             if (Nodo.Derecha != null)
             {
