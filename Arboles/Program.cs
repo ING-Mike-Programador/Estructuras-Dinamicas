@@ -1,4 +1,7 @@
-﻿namespace Arboles
+﻿using System.Dynamic;
+using System.Runtime.CompilerServices;
+
+namespace Arboles
 {
     internal class Program
     {
@@ -9,31 +12,32 @@
             string[] nombres = { "Miguel", "Jessica", "Itzel", "Javier", "Luis", "Rebeca" };
             int[] edades = { 20, 22, 30, 20, 23, 12 };
             string[] sexo = { "Masculino", "Femenino", "Femenino", "Masculino", "Masculino", "Femenino" };
-            
+            Arbol arbol = new Arbol();
+
             // Proceso //
             Console.WriteLine("ESCRIBIENDO......");
 
             for (int i = 0; i < 6; i++)
             {
-                objetoLista objtLista = new objetoLista(i + 1, nombres[i], edades[i], sexo[i]);
-
+                objetoNodo objtNodo = new objetoNodo(i + 1, nombres[i], edades[i], sexo[i]);
                 Console.Write("El identificador escrito es: ");
-                Console.WriteLine(objtLista.getIdentificador());
+                Console.WriteLine(objtNodo.Persona.getID());
                 Console.Write("El nombre escrito es: ");
-                Console.WriteLine(objtLista.getNombre());
+                Console.WriteLine(objtNodo.Persona.getNombre());
                 Console.Write("La edad escrita es: ");
-                Console.WriteLine(objtLista.getEdad());
+                Console.WriteLine(objtNodo.Persona.getEdad());
                 Console.Write("El sexo escrito es: ");
-                Console.WriteLine(objtLista.getGenero());
+                Console.WriteLine(objtNodo.Persona.getGenero());
                 Console.WriteLine();
 
-                instanciaLista.agg(objtLista);
+                arbol.Agregar(objtNodo);
             }
             Console.WriteLine("Presiona ENTER para Imprimir");
             Console.WriteLine("--------------------------------------------");
             Console.ReadLine();
         }
     }
+
     public class Arbol
     {
         private objetoNodo Nodo = null;
@@ -43,7 +47,8 @@
         {
             Agregar(nodo);
         }
-        public void Agregar(objetoNodo nodo)
+
+        public void Agregar(objetoNodo nodo) // Metodo para agregar //
         {
             if (Nodo == null)
             {
@@ -55,82 +60,133 @@
                 {
                     if (Nodo.Derecha == null)
                     {
+                        nodo.Arriba = Nodo;
                         Nodo.Derecha = nodo;
                     }
                     else
                     {
                         objetoNodo recorridoNodo = Nodo.Derecha;
-                        RecorridoAgg(recorridoNodo);
+                        recorridoAgg(recorridoNodo);
                     }
                 }
                 else if (nodo.Persona.getID() < Nodo.Persona.getID())
                 {
                     if (Nodo.Izquierda == null)
                     {
+                        nodo.Arriba = Nodo;
                         Nodo.Izquierda = nodo;
                     }
                     else
                     {
                         objetoNodo recorridoNodo = Nodo.Izquierda;
-                        RecorridoAgg(recorridoNodo, nodo);
+                        recorridoAgg(recorridoNodo, nodo);
                     }
                 }
             }
         }
-        public void recorridoAgg(objetoNodo Nodo, objetoNodo nodo)
+        public void recorridoAgg(objetoNodo Nodo, objetoNodo nodo)// Recorrido para agregar //
         {
             if (nodo.Persona.getID() > Nodo.Persona.getID())
             {
                 if (Nodo.Derecha == null)
                 {
+                    nodo.Arriba = Nodo;
                     Nodo.Derecha = nodo;
                 }
                 else
                 {
                     objetoNodo recorridoNodo = Nodo.Derecha;
-                    RecorridoAgg(recorridoNodo);
+                    recorridoAgg(recorridoNodo);
                 }
             }
             else if (nodo.Persona.getID() < Nodo.Persona.getID())
             {
                 if (Nodo.Izquierda == null)
                 {
+                    nodo.Arriba = Nodo;
                     Nodo.Izquierda = nodo;
                 }
                 else
                 {
                     objetoNodo recorridoNodo = Nodo.Izquierda;
-                    RecorridoAgg(ref recorridoNodo);
+                    recorridoAgg(ref recorridoNodo);
                 }
             }
+        }
+        public void ImprimirIRD() // Metodo de impresion de menor a mayor (Izquierda-Raiz-Derecha) //
+        {
+            if (Nodo != null)
+            {
+                if (Nodo.Izquierda != null)
+                {
+                    recorridoImp(Nodo.Izquierda);
+                }
+                Impresiones(Nodo);
+                if (Nodo.Derecha != null)
+                {
+                    recorridoImp(Nodo.Derecha);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No hay nada en el arbol");
+            }
+        }
+        public void recorridoImp(objetoNodo Nodo) // Recorrido recursivo para imprimir de menor a mayor (Izquierda-Raiz-Derecha) //
+        {
+            if (Nodo.Izquierda != null)
+            {
+                recorridoImp(Nodo.Izquierda);
+            }
+            Impresiones(Nodo);
+            if (Nodo.Derecha != null)
+            {
+                recorridoImp(Nodo.Derecha);
+            }
+        }
+        public void Impresiones(objetoNodo nodo) // Metodo donde se imprimen los datos, para mantener mas limpio el codigo //
+        {
+            Console.WriteLine("______________________________");
+            Console.Write("El identificador es: ");
+            Console.WriteLine(nodo.Persona.getID());
+            Console.Write("El nombre escrito es: ");
+            Console.WriteLine(nodo.Persona.getNombre());
+            Console.Write("La edad escrita es: ");
+            Console.WriteLine(nodo.Persona.getEdad());
+            Console.Write("El sexo escrito es: ");
+            Console.WriteLine(nodo.Persona.getGenero());
+            Console.WriteLine("______________________________");
         }
     }
     public class objetoNodo
     {
-        public objetoNodo Arriba = null;
-        public objetoNodo Izquierda = null;
-        public objetoNodo Derecha = null;
-        public datosNodo Persona = new datosNodo();
+        // Variables //
+        public objetoNodo Arriba = null; // Nodo padre (opcional) //
+        public objetoNodo Izquierda = null; // Nodo hijo izquierdo //
+        public objetoNodo Derecha = null; // // Nodo hijo derecho //
 
-        public objetoLista(int Identificador)
+        public datosNodo Persona = new datosNodo(); // Datos de la persona //
+
+        // Constructores //
+        public objetoNodo(int Identificador)
         {
             Persona.setID(Identificador);
-        }
-        public objetoLista(int Identificador, string Nombre)
+        } 
+        public objetoNodo(int Identificador, string Nombre)
         {
             Persona.setID(Identificador);
             Persona.setNombre(Nombre);
             Persona.setEdad(0);
             Persona.setGenero("");
         }
-        public objetoLista(int Identificador, string Nombre, int Edad)
+        public objetoNodo(int Identificador, string Nombre, int Edad)
         {
             Persona.setID(Identificador);
             Persona.setNombre(Nombre);
             Persona.setEdad(Edad);
             Persona.setGenero("");
         }
-        public objetoLista(int Identificador, string Nombre, int Edad, string Genero)
+        public objetoNodo(int Identificador, string Nombre, int Edad, string Genero)
         {
             Persona.setID(Identificador);
             Persona.setNombre(Nombre);
@@ -141,11 +197,13 @@
     }
     public class datosNodo
     {
+        // Variables //
         private int _id;
         private string _nombre;
         private int _edad;
         private string _genero;
 
+        // Metodos //
         public void setID(int ID)
         {
             _id = ID;
