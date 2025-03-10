@@ -8,7 +8,7 @@ namespace Arboles
         static void Main(string[] args)
         {
             // Variable //
-
+            int[] identificador = { 100, 50, 120, 110, 1, 33 };
             string[] nombres = { "Miguel", "Jessica", "Itzel", "Javier", "Luis", "Rebeca" };
             int[] edades = { 20, 22, 30, 20, 23, 12 };
             string[] sexo = { "Masculino", "Femenino", "Femenino", "Masculino", "Masculino", "Femenino" };
@@ -19,21 +19,20 @@ namespace Arboles
 
             for (int i = 0; i < 6; i++)
             {
-                objetoNodo objtNodo = new objetoNodo(i + 1, nombres[i], edades[i], sexo[i]);
-                Console.Write("El identificador escrito es: ");
-                Console.WriteLine(objtNodo.Persona.getID());
-                Console.Write("El nombre escrito es: ");
-                Console.WriteLine(objtNodo.Persona.getNombre());
-                Console.Write("La edad escrita es: ");
-                Console.WriteLine(objtNodo.Persona.getEdad());
-                Console.Write("El sexo escrito es: ");
-                Console.WriteLine(objtNodo.Persona.getGenero());
+                objetoNodo objtNodo = new objetoNodo(identificador[i], nombres[i], edades[i], sexo[i]);
+                arbol.Impresiones(objtNodo); // Limpieza de codigo //
                 Console.WriteLine();
 
                 arbol.Agregar(objtNodo);
             }
             Console.WriteLine("Presiona ENTER para Imprimir");
             Console.WriteLine("--------------------------------------------");
+            Console.ReadLine();
+
+            arbol.ImprimirIRD();
+
+            Console.WriteLine();
+            Console.WriteLine("Presiona ENTER para terminar");
             Console.ReadLine();
         }
     }
@@ -66,7 +65,7 @@ namespace Arboles
                     else
                     {
                         objetoNodo recorridoNodo = Nodo.Derecha;
-                        recorridoAgg(recorridoNodo);
+                        recorridoAgg(recorridoNodo,nodo);
                     }
                 }
                 else if (nodo.Persona.getID() < Nodo.Persona.getID())
@@ -96,7 +95,7 @@ namespace Arboles
                 else
                 {
                     objetoNodo recorridoNodo = Nodo.Derecha;
-                    recorridoAgg(recorridoNodo);
+                    recorridoAgg(recorridoNodo, nodo);
                 }
             }
             else if (nodo.Persona.getID() < Nodo.Persona.getID())
@@ -109,7 +108,7 @@ namespace Arboles
                 else
                 {
                     objetoNodo recorridoNodo = Nodo.Izquierda;
-                    recorridoAgg(ref recorridoNodo);
+                    recorridoAgg(recorridoNodo, nodo);
                 }
             }
         }
