@@ -184,6 +184,14 @@ namespace Arboles
                 recorridoDRI(Nodo.Izquierda);
             }
         }
+        public void Eliminar() // Metodo para eliminar nodos //
+        {
+
+        }
+        private void recorridoEliminar(objetoNodo Nodo) // recorrido donde se eliminan nodos //
+        {
+
+        }
         public void Impresiones(objetoNodo nodo) // Metodo donde se imprimen los datos, para mantener mas limpio el codigo //
         {
             Console.WriteLine("______________________________");
