@@ -202,6 +202,8 @@ namespace Arboles
         {
             if (Nodo != null)
             {
+                objetoNodo IzNodo = Nodo.Izquierda;
+                objetoNodo DeNodo = Nodo.Derecha;
                 if (Nodo.Persona.getID() == ID)
                 {
                     if (Nodo.Izquierda != null)
@@ -232,11 +234,25 @@ namespace Arboles
                 }
                 else if (ID < Nodo.Persona.getID())
                 {
-                    recorridoEliminar(Nodo.Izquierda,ID);
+                    if (IzNodo != null)
+                    {
+                        recorridoEliminar(IzNodo, ID, false);
+                    }
+                    else
+                    {
+                        Console.WriteLine("El elemento no existe");
+                    }
                 }
                 else if (ID > Nodo.Persona.getID())
                 {
-                    recorridoEliminar(Nodo.Derecha,ID);
+                    if (DeNodo != null)
+                    {
+                        recorridoEliminar(DeNodo, ID, true);
+                    }
+                    else
+                    {
+                        Console.WriteLine("El elemento no existe");
+                    }
                 }
                 else
                 {
@@ -248,47 +264,92 @@ namespace Arboles
                 Console.WriteLine("No hay nada en el arbol");
             }
         }
-        private void recorridoEliminar(objetoNodo Nodo, int ID) // recorrido donde se eliminan nodos //
+        private void recorridoEliminar(objetoNodo Nodo, int ID, bool Lado) // recorrido donde se eliminan nodos //
         {
+            objetoNodo IzNodo = Nodo.Izquierda;
+            objetoNodo DeNodo = Nodo.Derecha;
             if (Nodo.Persona.getID() == ID)
             {
-                if (Nodo.Izquierda != null)
+                Nodo = Nodo.Arriba;
+                if (!Lado)
                 {
-                    objetoNodo nodo = Nodo.Izquierda.Derecha;
-                    Nodo.Izquierda.Derecha = Nodo.Derecha;
-                    Nodo = Nodo.Izquierda;
-                    if (nodo != null)
+                    if (Nodo.Izquierda.Izquierda != null)
                     {
-                        Agregar(nodo);
+                        objetoNodo nodo = Nodo.Izquierda.Izquierda.Derecha;
+                        Nodo.Izquierda.Izquierda.Derecha = Nodo.Izquierda.Derecha;
+                        Nodo.Izquierda = Nodo.Izquierda.Izquierda;
+                        if (nodo != null)
+                        {
+                            Agregar(nodo);
+                        }
                     }
-                }
-                else if (Nodo.Derecha != null)
-                {
-                    objetoNodo nodo = Nodo.Derecha.Izquierda;
-                    Nodo.Derecha.Izquierda = Nodo.Izquierda;
-                    Nodo = Nodo.Derecha;
-                    if (nodo != null)
+                    else if (Nodo.Izquierda.Derecha != null)
                     {
-                        Agregar(nodo);
+                        objetoNodo nodo = Nodo.Izquierda.Derecha.Izquierda;
+                        Nodo.Izquierda.Derecha.Izquierda = Nodo.Izquierda.Izquierda;
+                        Nodo.Izquierda = Nodo.Izquierda.Derecha;
+                        if (nodo != null)
+                        {
+                            Agregar(nodo);
+                        }
+                    }
+                    else
+                    {
+                        Nodo = null;
+                        Console.WriteLine("El arbol ahora esta vacio");
                     }
                 }
                 else
                 {
-                    Nodo = null;
-                    Console.WriteLine("El arbol ahora esta vacio");
+
+                    if (Nodo.Derecha.Izquierda != null)
+                    {
+                        objetoNodo nodo = Nodo.Derecha.Izquierda.Derecha;
+                        Nodo.Derecha.Izquierda.Derecha = Nodo.Derecha.Derecha;
+                        Nodo.Derecha = Nodo.Derecha.Izquierda;
+                        if (nodo != null)
+                        {
+                            Agregar(nodo);
+                        }
+                    }
+                    else if (Nodo.Derecha.Derecha != null)
+                    {
+                        objetoNodo nodo = Nodo.Derecha.Derecha.Izquierda;
+                        Nodo.Derecha.Derecha.Izquierda = Nodo.Derecha.Izquierda;
+                        Nodo.Derecha = Nodo.Derecha.Derecha;
+                        if (nodo != null)
+                        {
+                            Agregar(nodo);
+                        }
+                    }
+                    else
+                    {
+                        Nodo = null;
+                        Console.WriteLine("El arbol ahora esta vacio");
+                    }
                 }
             }
             else if (ID < Nodo.Persona.getID())
             {
-                recorridoEliminar(Nodo.Izquierda, ID);
+                if (IzNodo != null)
+                {
+                    recorridoEliminar(IzNodo, ID, false);
+                }
+                else
+                {
+                    Console.WriteLine("El elemento no existe");
+                }
             }
             else if (ID > Nodo.Persona.getID())
             {
-                recorridoEliminar(Nodo.Derecha,ID);
-            }
-            else
-            {
-                Console.WriteLine("No existe el elemento");
+                if (DeNodo != null)
+                {
+                    recorridoEliminar(DeNodo, ID, true);
+                }
+                else
+                {
+                    Console.WriteLine("El elemento no existe");
+                }
             }
         }
         public void Impresiones(objetoNodo nodo) // Metodo donde se imprimen los datos, para mantener mas limpio el codigo //
